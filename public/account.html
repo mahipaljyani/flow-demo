@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	module.exports = function (req, res) {
+	  var data = '';
+	  
+	  req.on('data', function (chunk) {
+	    data += chunk;
+	  });
+
+	  req.on('end', function () {
+	    console.log('POST data received');
+	    res.writeHead(200, {
+	      'Content-Type': 'text/json'
+	    });
+	    res.write(JSON.stringify(data));
+	    res.end();
+	  });
+	};
+</script>
+
+</body>
+</html>
