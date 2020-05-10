@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.7.0/tachyons.css">
-		<title>Dreamforce 2019 is the best</title>
-	</head>
-	<body>
-		<div class="vh-100 w-100 flex justify-center">
-			<div class="flex flex-column items-center justify-center">
-				<h2 class="fw4 green">heroku traning</h2>
-				<p class="silver ma0">Running with Heroku Flow</p>
-				<div class="pt5">
-					<span id="env" class="white pv1 ph2 br-pill bg-light-blue"></span>
-				</div>
-			</div>
-		</div>
+<head>
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	module.exports = function (req, res) {
+	  var data = '';
+	  
+	  req.on('data', function (chunk) {
+	    data += chunk;
+	  });
 
-		<script>
-			var env = "<%= env %>";
-			document.getElementById("env").innerHTML = env;
-		</script>
-	</body>
+	  req.on('end', function () {
+	    console.log('POST data received');
+	    res.writeHead(200, {
+	      'Content-Type': 'text/json'
+	    });
+	    res.write(JSON.stringify(data));
+	    res.end();
+	  });
+	};
+</script>
+
+</body>
 </html>
